@@ -21,11 +21,11 @@ const Home = ({navigation}) => {
       <Image source={IMAGES.Logo} style={styles.logo} />
       <Text></Text>
       <View>
+        <CustomButton title="Premmium" />
         <CustomButton
-          title="Premmium"
+          title="Discover"
           onPress={() => navigate(Routes.DISCOVER.name)}
         />
-        <CustomButton title="Discover" />
       </View>
     </View>
   );

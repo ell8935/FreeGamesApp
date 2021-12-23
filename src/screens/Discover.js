@@ -4,11 +4,11 @@ import {IMAGES} from '../assests';
 import Carousel from 'react-native-snap-carousel';
 import {CarouselCards} from '../components';
 import {makeHttp} from '../api';
-
+var res;
 const Discover = () => {
   useEffect(() => {
     const fetchGames = async () => {
-      const res = await makeHttp({
+      var res = await makeHttp({
         method: 'get',
         endpoint: 'Freegames/getFreeGames',
       });
@@ -16,6 +16,13 @@ const Discover = () => {
     };
     fetchGames();
   }, []);
+  if (res === undefined) {
+    return (
+      <SafeAreaView style={styles.container2}>
+        <Text>"asd"</Text>
+      </SafeAreaView>
+    );
+  }
   return (
     <SafeAreaView style={styles.container2}>
       <CarouselCards />
