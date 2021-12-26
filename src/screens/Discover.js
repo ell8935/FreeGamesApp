@@ -1,33 +1,33 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Text, Image, SafeAreaView} from 'react-native';
 import {IMAGES} from '../assests';
 import Carousel from 'react-native-snap-carousel';
 import {CarouselCards} from '../components';
 import {makeHttp} from '../api';
-var res;
+
 const Discover = () => {
+  const [data, setData] = useState(null);
   useEffect(() => {
+    console.log('asd');
     const fetchGames = async () => {
-      var res = await makeHttp({
-        method: 'get',
-        endpoint: 'Freegames/getFreeGames',
+      const res = await makeHttp({
+        method: 'GET',
+        endpoint: '/Freegames/getFreeGames',
       });
-      console.log(res);
+      console.log({res});
+      setData(res);
     };
     fetchGames();
   }, []);
-  if (res === undefined) {
+
+  if (data) {
     return (
       <SafeAreaView style={styles.container2}>
-        <Text>"asd"</Text>
+        <CarouselCards data={data} />
       </SafeAreaView>
     );
   }
-  return (
-    <SafeAreaView style={styles.container2}>
-      <CarouselCards />
-    </SafeAreaView>
-  );
+  return null;
 };
 
 export default Discover;
